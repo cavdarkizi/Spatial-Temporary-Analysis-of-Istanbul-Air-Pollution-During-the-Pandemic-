@@ -1,0 +1,188 @@
+
+var istanbul = ee.FeatureCollection(table);
+
+var legend = ui.Panel({
+  style: {
+    position: 'bottom-right',
+    padding: '8px 15px'
+  }
+});
+
+var legendTitle = ui.Label({
+  value: 'CO',
+  style: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+    margin: '0 0 4px 0',
+    padding: '0'
+    }
+});
+
+var makeRow = function(color, name) {
+      var colorBox = ui.Label({
+        style: {
+          backgroundColor: '#' + color,
+          padding: '8px',
+          margin: '0 0 4px 0'
+        }
+      });
+
+      var description = ui.Label({
+        value: name,
+        style: {margin: '0 0 4px 6px'}
+      });
+
+      return ui.Panel({
+        widgets: [colorBox, description],
+        layout: ui.Panel.Layout.Flow('horizontal')
+      });
+};
+
+legend.add(legendTitle);
+var palette =['000000', '0000FF', '732BF5', '73FBFD', '00FF00', 'FFFE91', 'FF0000'];
+var names = ['0', '', '', '', '', '', '0.05'];
+for (var i = 0; i < 7; i++) {
+  legend.add(makeRow(palette[i], names[i]));
+  }  
+//Map.add(legend);
+
+Map.centerObject(istanbul);
+Map.addLayer(istanbul, {}, 'İstanbul', false);
+
+var collection = ee.ImageCollection("COPERNICUS/S5P/NRTI/L3_NO2")
+.select('NO2_column_number_density')
+.filterDate('2019-11-01', '2019-11-30');
+//.filterDate('2019-12-01', '2019-12-31');
+//.filterDate('2020-01-01', '2020-01-31');
+//.filterDate('2020-02-01', '2020-02-29'); 
+//.filterDate('2020-03-01', '2020-03-31');
+//.filterDate('2020-04-01', '2020-04-30');
+//.filterDate('2020-05-01', '2020-05-31');
+//.filterDate('2020-06-01', '2020-06-30');
+//.filterDate('2020-07-01', '2020-07-31');
+//.filterDate('2020-08-01', '2020-08-31');
+//.filterDate('2020-09-01', '2020-09-30');
+//.filterDate('2020-10-01', '2020-10-31');
+//.filterDate('2020-11-01', '2020-11-30');
+//.filterDate('2020-12-01', '2020-12-31');
+//.filterDate('2021-01-01', '2021-01-31');
+//.filterDate('2021-02-01', '2021-02-27'); 
+//.filterDate('2021-03-01', '2021-03-31');
+//.filterDate('2021-04-01', '2021-04-30');
+//.filterDate('2021-05-01', '2021-05-31');
+//.filterDate('2021-06-01', '2021-06-30');
+//.filterDate('2021-07-01', '2021-07-31');
+//.filterDate('2021-08-01', '2021-08-31');
+//.filterDate('2021-09-01', '2021-09-30');
+//.filterDate('2021-10-01', '2021-10-31');
+//.filterDate('2021-11-01', '2021-11-30');
+//.filterDate('2021-12-01', '2021-12-31');
+//.filterDate('2022-01-01', '2022-01-31');
+//.filterDate('2022-02-01', '2022-02-28');
+//.filterDate('2022-03-01', '2022-03-24');
+
+//.filterDate('2019-11-01', '2022-03-31');
+
+
+var collection_so2 = ee.ImageCollection("COPERNICUS/S5P/NRTI/L3_SO2")
+.select('SO2_column_number_density')
+.filterDate('2019-11-01', '2019-11-30');
+//.filterDate('2019-12-01', '2019-12-31');
+//.filterDate('2020-01-01', '2020-01-31');
+//.filterDate('2020-02-01', '2020-02-29'); 
+//.filterDate('2020-03-01', '2020-03-31');
+//.filterDate('2020-04-01', '2020-04-30');
+//.filterDate('2020-05-01', '2020-05-31');
+//.filterDate('2020-06-01', '2020-06-30');
+//.filterDate('2020-07-01', '2020-07-31');
+//.filterDate('2020-08-01', '2020-08-31');
+//.filterDate('2020-09-01', '2020-09-30');
+//.filterDate('2020-10-01', '2020-10-31');
+//.filterDate('2020-11-01', '2020-11-30');
+//.filterDate('2020-12-01', '2020-12-31');
+//.filterDate('2021-01-01', '2021-01-31');
+//.filterDate('2021-02-01', '2021-02-27'); 
+//.filterDate('2021-03-01', '2021-03-31');
+//.filterDate('2021-04-01', '2021-04-30');
+//.filterDate('2021-05-01', '2021-05-31');
+//.filterDate('2021-06-01', '2021-06-30');
+//.filterDate('2021-07-01', '2021-07-31');
+//.filterDate('2021-08-01', '2021-08-31');
+//.filterDate('2021-09-01', '2021-09-30');
+//.filterDate('2021-10-01', '2021-10-31');
+//.filterDate('2021-11-01', '2021-11-30');
+//.filterDate('2021-12-01', '2021-12-31');
+//.filterDate('2022-01-01', '2022-01-31');
+//.filterDate('2022-02-01', '2022-02-28');
+//.filterDate('2022-03-01', '2022-03-31');
+
+//.filterDate('2019-11-01', '2022-03-31');
+
+var collection_co = ee.ImageCollection("COPERNICUS/S5P/NRTI/L3_CO")
+.select('CO_column_number_density')
+.filterDate('2019-11-01', '2019-11-30');
+//.filterDate('2019-12-01', '2019-12-31');
+//.filterDate('2020-01-01', '2020-01-31');
+//.filterDate('2020-02-01', '2020-02-29'); 
+//.filterDate('2020-03-01', '2020-03-31');
+//.filterDate('2020-04-01', '2020-04-30');
+//.filterDate('2020-05-01', '2020-05-31');
+//.filterDate('2020-06-01', '2020-06-30');
+//.filterDate('2020-07-01', '2020-07-31');
+//.filterDate('2020-08-01', '2020-08-31');
+//.filterDate('2020-09-01', '2020-09-30');
+//.filterDate('2020-10-01', '2020-10-31');
+//.filterDate('2020-11-01', '2020-11-30');
+//.filterDate('2020-12-01', '2020-12-31');
+//.filterDate('2021-01-01', '2021-01-31');
+//.filterDate('2021-02-01', '2021-02-27');
+//.filterDate('2021-03-01', '2021-03-31');
+//.filterDate('2021-04-01', '2021-04-30');
+//.filterDate('2021-05-01', '2021-05-31');
+//.filterDate('2021-06-01', '2021-06-30');
+//.filterDate('2021-07-01', '2021-07-31');
+//.filterDate('2021-08-01', '2021-08-31');
+//.filterDate('2021-09-01', '2021-09-30');
+//.filterDate('2021-10-01', '2021-10-31');
+//.filterDate('2021-11-01', '2021-11-30');
+//.filterDate('2021-12-01', '2021-12-31');
+//.filterDate('2022-01-01', '2022-01-31');
+//.filterDate('2022-02-01', '2022-02-28');
+//.filterDate('2022-03-01', '2022-03-31');
+
+//.filterDate('2019-11-01', '2022-03-31');
+
+var no2Image = collection.mean(); // mean across each period
+print('NO2 image', no2Image); // debug info in console
+
+var so2Image = collection_so2.mean();
+print('SO2 image', so2Image);
+
+var coImage = collection_co.mean();
+print('CO image', coImage);
+
+print(ui.Chart.image.series(collection, istanbul, ee.Reducer.mean(), 30));
+Map.addLayer(no2Image.clip(istanbul), band_viz, 'Sentinel 5P NRT N02');
+
+//CSV:
+var dataset = ee.ImageCollection("COPERNICUS/S5P/NRTI/L3_NO2")
+                 .filterBounds(istanbul)
+                  .filter(ee.Filter.date('2019-11-01', '2019-11-30'));
+                 print(dataset)
+var NO2 = dataset.select('NO2_column_number_density')
+print(ui.Chart.image.series(NO2, istanbul, ee.Reducer.mean(), 30, 'system:time_start'));
+NO2 = NO2.map(function(image){
+  return image.set(image.reduceRegion(ee.Reducer.mean(), istanbul, 30));
+});
+
+Export.table.toDrive({collection: NO2, 
+                      description: 'NO2means',
+                      selectors: ['system:time_start', 'NO2_column_number_density']
+})
+
+print(ui.Chart.image.series(collection_so2, istanbul, ee.Reducer.mean(), 30));
+Map.addLayer(so2Image.clip(istanbul), band_viz_SO2, 'Sentinel 5P NRT S02');
+
+print(ui.Chart.image.series(collection_co, istanbul, ee.Reducer.mean(), 30));
+Map.addLayer(coImage.clip(istanbul), band_viz_CO, 'Sentinel 5P NRT CO');
+
